@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=20261118">
+  <link rel="stylesheet" href="assets/site.css?v=20261119">
 </head>
 <body data-page="product">
 <div class="announcement"><span>ارسال رایگان برای سفارش‌های بالای ۲۰ میلیون تومان</span><span class="dot"></span><b>ساخته‌شده برای ماندن</b></div>
@@ -90,20 +90,67 @@
   <nav class="breadcrumb" aria-label="مسیر صفحه"><a href="index.html">خانه</a><span>/</span><a href="products.html">فروشگاه طلا</a><span>/</span><span>انگشتر هاله</span></nav>
   <div class="product-detail" data-id="halo-ring" data-name="انگشتر هاله" data-price="18900000" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=88">
     <div class="product-detail-grid">
-      <div class="product-gallery"><div class="product-gallery-main"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=88" alt="انگشتر طلای هاله"></div><div class="gallery-thumbs"><button class="gallery-thumb active" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=88" aria-label="نمای اول"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=240&q=75" alt=""></button><button class="gallery-thumb" data-image="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=88" aria-label="نمای دوم"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=240&q=75" alt=""></button><button class="gallery-thumb" data-image="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=1200&q=88" aria-label="نمای سوم"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=240&q=75" alt=""></button><button class="gallery-thumb" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=88&sat=-25" aria-label="نمای چهارم"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=240&q=75&sat=-25" alt=""></button></div></div>
+      <div class="product-gallery">
+        <div class="product-gallery-main">
+          <button class="gallery-zoom-trigger" type="button" aria-label="نمایش تصویر بزرگ">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=88" alt="انگشتر طلای هاله" fetchpriority="high" decoding="async">
+            <span class="gallery-zoom-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5M10.8 7.5v6.6M7.5 10.8h6.6"/></svg>نمای بزرگ</span>
+          </button>
+        </div>
+        <div class="gallery-thumbs" aria-label="تصاویر محصول">
+          <button class="gallery-thumb active" type="button" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=88" aria-label="نمای اول"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=240&q=75" alt=""></button>
+          <button class="gallery-thumb" type="button" data-image="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=88" aria-label="نمای دوم"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=240&q=75" alt=""></button>
+          <button class="gallery-thumb" type="button" data-image="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=1200&q=88" aria-label="نمای سوم"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=240&q=75" alt=""></button>
+          <button class="gallery-thumb" type="button" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=88&sat=-25" aria-label="نمای چهارم"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=240&q=75&sat=-25" alt=""></button>
+        </div>
+        <p class="gallery-hint">برای دیدن جزئیات، تصویر را لمس کنید.</p>
+      </div>
       <div class="product-detail-copy"><p class="page-kicker">مجموعه روزمره</p><h1 class="product-title">انگشتر هاله</h1><p class="detail-price">۱۸٬۹۰۰٬۰۰۰ <small>تومان</small></p><p class="price-explain">قیمت نمونه برای نمایش طرح؛ قیمت نهایی باید از اطلاعات واقعی محصول دریافت شود.</p><p class="product-description">فرمی ساده و دلنشین برای همراهی هرروزه. انگشتر هاله با خطوط نرم و درخشش آرام، به‌تنهایی زیباست و کنار زیورهای دیگر هم به‌خوبی می‌نشیند.</p>
-        <div class="product-detail-options"><label><span class="field-label">سایز انگشتر</span><select aria-label="انتخاب سایز"><option>انتخاب سایز</option><option>۵۲</option><option>۵۴</option><option>۵۶</option><option>۵۸</option></select></label><div><span class="field-label">تعداد</span><div class="quantity-stepper"><button type="button" data-quantity="-1" aria-label="کاهش تعداد">−</button><span class="quantity-value">۱</span><button type="button" data-quantity="1" aria-label="افزایش تعداد">＋</button></div></div></div>
+        <div class="product-detail-options"><div class="size-field">
+          <label for="product-size"><span class="field-label">سایز انگشتر</span><select id="product-size" aria-label="انتخاب سایز"><option value="" selected>انتخاب سایز</option><option value="۵۲">۵۲</option><option value="۵۴">۵۴</option><option value="۵۶">۵۶</option><option value="۵۸">۵۸</option></select></label>
+          <button class="size-guide-open" type="button" aria-haspopup="dialog" aria-controls="ring-size-guide">راهنمای انتخاب سایز <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V8m-4 4 4-4 4 4M5 20h14"/></svg></button>
+        </div><div><span class="field-label">تعداد</span><div class="quantity-stepper"><button type="button" data-quantity="-1" aria-label="کاهش تعداد">−</button><span class="quantity-value">۱</span><button type="button" data-quantity="1" aria-label="افزایش تعداد">＋</button></div></div></div>
+        <div class="gift-options">
+          <label class="gift-toggle" for="gift-wrap">
+            <input id="gift-wrap" type="checkbox" aria-controls="gift-note-field">
+            <span class="gift-toggle-copy"><strong>بسته‌بندی هدیه</strong><small>همراه با یادداشت کوتاه برای گیرنده</small></span>
+            <span class="gift-check" aria-hidden="true">✓</span>
+          </label>
+          <label class="gift-note-field" id="gift-note-field" for="gift-note" hidden>
+            <span class="field-label">متن کارت هدیه <small>اختیاری · حداکثر ۱۲۰ نویسه</small></span>
+            <textarea id="gift-note" rows="2" maxlength="120" placeholder="پیام کوتاه شما برای گیرنده…"></textarea>
+          </label>
+          <p class="gift-note-help">انتخاب هدیه و متن کارت در سبد خرید نمایش داده می‌شود.</p>
+        </div>
         <div class="product-actions"><button class="button-primary product-buy">افزودن به سبد خرید <svg viewBox="0 0 24 24"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 1.9-1.5L21 8H6"/></svg></button><button class="wish-button" aria-label="افزودن به علاقه‌مندی‌ها"><svg viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.2-8.8 10-8.8 10s-8.8-4.8-8.8-10A4.7 4.7 0 0 1 12 6.2a4.7 4.7 0 0 1 8.8 2.6Z"/></svg></button></div>
         <div class="product-guarantees"><span>ضمانت اصالت</span><span>فاکتور معتبر</span><span>ارسال امن</span></div>
         <div class="product-accordions"><details open><summary>مشخصات محصول</summary><p>عیار: ۱۸ · وزن تقریبی: ۱٫۸ گرم · جنس: طلای زرد · بسته‌بندی: جعبه هدیه</p></details><details><summary>ارسال و بازگشت</summary><p>زمان و هزینه ارسال در مرحله ثبت سفارش نمایش داده می‌شود. برای راهنمای کامل، صفحه <a href="shipping.html">ارسال و بازگشت</a> را ببینید.</p></details><details><summary>نگهداری از طلا</summary><p>برای حفظ درخشش، زیور را جدا از مواد شوینده و عطر نگه دارید و هنگام ورزش یا شنا از آن استفاده نکنید.</p></details></div>
       </div>
     </div>
   </div>
-  <div class="section-title-inline"><h2>شاید این‌ها را هم دوست داشته باشید</h2><a class="view-all" href="products.html">مشاهده همه محصولات</a></div><div class="products-grid related-products">
+  <div class="section-title-inline set-section-heading"><div><p class="section-kicker">پیشنهاد ست</p><h2>هماهنگ با انگشتر هاله</h2><p>دو انتخاب ظریف برای ساختن ترکیبی شخصی و هم‌نشین.</p></div><a class="view-all" href="products.html">دیدن همه محصولات</a></div><div class="products-grid related-products">
     <article class="product-card" data-id="nova-necklace" data-name="گردنبند نوا" data-price="24700000" data-category="necklace" data-image="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=850&q=85"><div class="product-image-wrap"><a class="product-image-link" href="product.html" aria-label="مشاهده تصویر گردنبند نوا"><img loading="lazy" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=850&q=85" alt="گردنبند نوا"><span class="product-image-cta">مشاهده محصول</span></a></div><div class="product-meta"><div class="product-title-row"><h3 class="product-title"><a href="product.html">گردنبند نوا</a></h3><p class="product-price">۲۴٬۷۰۰٬۰۰۰ <span class="price-unit">تومان</span></p></div><button class="product-buy">افزودن به سبد خرید <span>＋</span></button></div></article>
     <article class="product-card" data-id="resta-earrings" data-name="گوشواره رستا" data-price="12600000" data-category="earring" data-image="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=850&q=85"><div class="product-image-wrap"><a class="product-image-link" href="product.html" aria-label="مشاهده تصویر گوشواره رستا"><img loading="lazy" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=850&q=85" alt="گوشواره رستا"><span class="product-image-cta">مشاهده محصول</span></a></div><div class="product-meta"><div class="product-title-row"><h3 class="product-title"><a href="product.html">گوشواره رستا</a></h3><p class="product-price">۱۲٬۶۰۰٬۰۰۰ <span class="price-unit">تومان</span></p></div><button class="product-buy">افزودن به سبد خرید <span>＋</span></button></div></article>
   </div>
 </main>
+<dialog class="size-guide-dialog" id="ring-size-guide" aria-labelledby="ring-size-guide-title">
+  <div class="guide-dialog-head">
+    <div><p class="page-kicker">راهنمای خرید</p><h2 id="ring-size-guide-title">انتخاب سایز انگشتر</h2></div>
+    <button class="dialog-close" type="button" data-dialog-close aria-label="بستن راهنما"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+  </div>
+  <p class="size-guide-copy">یک حلقه مناسب را روی سطح صاف بگذارید و قطر داخلی آن را از لبه تا لبه، بر حسب میلی‌متر اندازه بگیرید. اندازه‌های زیر راهنمای تقریبی برای انتخاب اولیه‌اند.</p>
+  <div class="size-guide-table-wrap"><table class="size-guide-table"><thead><tr><th>سایز</th><th>قطر داخلی تقریبی</th></tr></thead><tbody><tr><td>۵۲</td><td>۱۶٫۶ میلی‌متر</td></tr><tr><td>۵۴</td><td>۱۷٫۲ میلی‌متر</td></tr><tr><td>۵۶</td><td>۱۷٫۸ میلی‌متر</td></tr><tr><td>۵۸</td><td>۱۸٫۵ میلی‌متر</td></tr></tbody></table></div>
+  <p class="size-guide-note">روش سایزبندی ممکن است بین سازندگان کمی تفاوت داشته باشد. اگر اندازه‌تان بین دو گزینه است، پیش از سفارش نهایی آن را با فروشنده تطبیق دهید.</p>
+</dialog>
+<dialog class="product-lightbox-dialog" id="product-lightbox" aria-label="نمایش بزرگ تصاویر محصول">
+  <button class="lightbox-close" type="button" data-dialog-close aria-label="بستن تصویر"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+  <div class="lightbox-stage">
+    <button class="lightbox-nav" type="button" data-lightbox-prev aria-label="تصویر قبلی"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+    <img class="lightbox-image" src="" alt="">
+    <button class="lightbox-nav" type="button" data-lightbox-next aria-label="تصویر بعدی"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+  </div>
+  <p class="lightbox-count" aria-live="polite"></p>
+</dialog>
 <footer class="site-footer">
     <div class="footer-main">
       <div class="footer-brand-block"><a class="brand footer-brand" href="index.html"><svg class="brand-mark" viewBox="0 0 48 44" aria-hidden="true"><path d="M24 3 5 13v18l19 10 19-10V13L24 3Z" fill="none" stroke="currentColor" stroke-width="1.15"/><path d="m5 13 19 10 19-10M24 23v18M15 8l19 19M33 8 15 27" fill="none" stroke="currentColor" stroke-width=".8"/><circle cx="24" cy="23" r="3" fill="currentColor"/></svg><span class="brand-name">زرین‌نگار</span><span class="brand-caption">ZARRIN NEGAAR</span></a><p class="footer-about">طلاهایی با طراحی آرام، برای لحظه‌هایی که ارزش ماندن دارند. انتخابی از جنس سلیقه و اصالت.</p></div>

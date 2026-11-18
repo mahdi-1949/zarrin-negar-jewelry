@@ -208,6 +208,17 @@
       if (!cart.length) { list.innerHTML = ''; }
       else {
         list.innerHTML = cart.map(item => `<article class="cart-row" data-cart-id="${escapeHTML(item.id)}"><img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}"><div><h3>${escapeHTML(item.name)}</h3><p>طلای ۱۸ عیار · همراه با فاکتور</p><div class="quantity-stepper"><button type="button" data-cart-action="decrease" aria-label="کاهش تعداد">−</button><span class="quantity-value">${formatMoney(item.qty)}</span><button type="button" data-cart-action="increase" aria-label="افزایش تعداد">＋</button></div></div><div class="cart-row-price">${formatMoney(item.price * item.qty)} تومان<button type="button" class="cart-remove" data-cart-action="remove">حذف</button></div></article>`).join('');
+        cart.forEach((item, index) => {
+          const details = [];
+          if (item.size) details.push(`سایز ${item.size}`);
+          if (item.giftWrap) details.push(`بسته‌بندی هدیه${item.giftMessage ? ` · پیام: ${item.giftMessage}` : ''}`);
+          if (!details.length) return;
+          const row = list.querySelectorAll('.cart-row')[index];
+          const note = document.createElement('p');
+          note.className = 'cart-row-options';
+          note.textContent = details.join(' · ');
+          row?.querySelector('h3')?.after(note);
+        });
       }
       document.querySelectorAll('[data-cart-total]').forEach(node => node.textContent = `${formatMoney(total)} تومان`);
       document.querySelectorAll('[data-cart-subtotal]').forEach(node => node.textContent = `${formatMoney(total)} تومان`);
@@ -219,12 +230,27 @@
       const name = card.dataset.name || card.querySelector('.product-title')?.textContent?.trim() || 'زیور زرین‌نگار';
       const price = Number(card.dataset.price || digitsToAscii(card.querySelector('.product-price')?.textContent || '').replace(/[^0-9]/g, '')) || 0;
       const image = card.dataset.image || card.querySelector('img')?.src || '';
-      const detailQuantity = card.classList.contains('product-detail') ? card.querySelector('.quantity-value')?.textContent : '1';
+      const isDetail = card.classList.contains('product-detail');
+      const sizeSelect = isDetail ? card.querySelector('#product-size') : null;
+      if (isDetail && sizeSelect && !sizeSelect.value) {
+        showToast('لطفاً پیش از افزودن به سبد، سایز انگشتر را انتخاب کنید.');
+        sizeSelect.focus();
+        return;
+      }
+      const giftWrap = Boolean(isDetail && card.querySelector('#gift-wrap')?.checked);
+      const giftMessage = giftWrap ? (card.querySelector('#gift-note')?.value.trim() || '') : '';
+      const detailQuantity = isDetail ? card.querySelector('.quantity-value')?.textContent : '1';
       const qty = Number(digitsToAscii(detailQuantity || '1')) || 1;
       const cart = readCart();
       const found = cart.find(item => item.id === id);
-      if (found) found.qty += qty;
-      else cart.push({id, name, price, image, qty});
+      if (found) {
+        found.qty += qty;
+        if (isDetail) {
+          found.size = sizeSelect?.value || '';
+          found.giftWrap = giftWrap;
+          found.giftMessage = giftMessage;
+        }
+      } else cart.push({id, name, price, image, qty, size:sizeSelect?.value || '', giftWrap, giftMessage});
       writeCart(cart);
       showToast('محصول به سبد خرید اضافه شد.');
     }));
@@ -248,12 +274,54 @@
       const current = Number(digitsToAscii(value.textContent)) || 1;
       value.textContent = formatMoney(Math.max(1, current + Number(button.dataset.quantity)));
     }));
-    document.querySelectorAll('.gallery-thumb').forEach(button => button.addEventListener('click', () => {
-      const mainImage = document.querySelector('.product-gallery-main img');
-      if (!mainImage) return;
-      mainImage.src = button.dataset.image;
-      document.querySelectorAll('.gallery-thumb').forEach(thumb => thumb.classList.toggle('active', thumb === button));
-    }));
+    const galleryThumbs = [...document.querySelectorAll('.gallery-thumb')];
+    const galleryMainImage = document.querySelector('.product-gallery-main img');
+    const galleryLightbox = document.querySelector('#product-lightbox');
+    const lightboxImage = galleryLightbox?.querySelector('.lightbox-image');
+    const lightboxCount = galleryLightbox?.querySelector('.lightbox-count');
+    const galleryOpenButton = document.querySelector('.gallery-zoom-trigger');
+    let activeGalleryIndex = Math.max(0, galleryThumbs.findIndex(button => button.classList.contains('active')));
+    function showGalleryImage(index) {
+      if (!galleryThumbs.length || !galleryMainImage) return;
+      activeGalleryIndex = (index + galleryThumbs.length) % galleryThumbs.length;
+      const thumb = galleryThumbs[activeGalleryIndex];
+      galleryMainImage.src = thumb.dataset.image;
+      galleryThumbs.forEach(button => button.classList.toggle('active', button === thumb));
+      if (lightboxImage) {
+        lightboxImage.src = thumb.dataset.image;
+        lightboxImage.alt = `انگشتر هاله، ${thumb.getAttribute('aria-label') || 'نمای محصول'}`;
+      }
+      if (lightboxCount) lightboxCount.textContent = `${formatMoney(activeGalleryIndex + 1)} از ${formatMoney(galleryThumbs.length)}`;
+    }
+    galleryThumbs.forEach((button, index) => button.addEventListener('click', () => showGalleryImage(index)));
+    galleryOpenButton?.addEventListener('click', () => {
+      showGalleryImage(activeGalleryIndex);
+      galleryLightbox?.showModal();
+    });
+    galleryLightbox?.querySelector('[data-lightbox-prev]')?.addEventListener('click', () => showGalleryImage(activeGalleryIndex - 1));
+    galleryLightbox?.querySelector('[data-lightbox-next]')?.addEventListener('click', () => showGalleryImage(activeGalleryIndex + 1));
+    galleryLightbox?.querySelectorAll('[data-dialog-close]').forEach(button => button.addEventListener('click', () => galleryLightbox.close()));
+    galleryLightbox?.addEventListener('click', event => { if (event.target === galleryLightbox) galleryLightbox.close(); });
+    galleryLightbox?.addEventListener('close', () => galleryOpenButton?.focus());
+    galleryLightbox?.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft') { event.preventDefault(); showGalleryImage(activeGalleryIndex + 1); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); showGalleryImage(activeGalleryIndex - 1); }
+    });
+    let touchStartX = 0;
+    galleryLightbox?.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0]?.clientX || 0; }, {passive:true});
+    galleryLightbox?.addEventListener('touchend', event => {
+      const touchEndX = event.changedTouches[0]?.clientX || 0;
+      const delta = touchEndX - touchStartX;
+      if (Math.abs(delta) > 48) showGalleryImage(activeGalleryIndex + (delta < 0 ? 1 : -1));
+    }, {passive:true});
+    const sizeGuideDialog = document.querySelector('#ring-size-guide');
+    document.querySelectorAll('.size-guide-open').forEach(button => button.addEventListener('click', () => sizeGuideDialog?.showModal()));
+    sizeGuideDialog?.querySelectorAll('[data-dialog-close]').forEach(button => button.addEventListener('click', () => sizeGuideDialog.close()));
+    sizeGuideDialog?.addEventListener('click', event => { if (event.target === sizeGuideDialog) sizeGuideDialog.close(); });
+    sizeGuideDialog?.addEventListener('close', () => document.querySelector('.size-guide-open')?.focus());
+    const giftWrapInput = document.querySelector('#gift-wrap');
+    const giftNoteField = document.querySelector('#gift-note-field');
+    giftWrapInput?.addEventListener('change', () => { if (giftNoteField) giftNoteField.hidden = !giftWrapInput.checked; });
     document.querySelectorAll('[data-filter-value]').forEach(button => button.addEventListener('click', () => {
       const value = button.dataset.filterValue;
       document.querySelectorAll('[data-filter-value]').forEach(option => option.classList.toggle('active', option === button));

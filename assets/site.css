@@ -1029,3 +1029,69 @@ body[data-page="cart"] .page-heading { padding-bottom: 20px; border-bottom: 1px 
 @media (prefers-reduced-motion: reduce) {
   .category-card,.category-arrow,.product-card,.product-image-cta { transition: none !important; }
 }
+
+/* Product page improvements: size guidance, gift options and an accessible gallery. */
+.gallery-zoom-trigger { position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; text-align: inherit; cursor: zoom-in; }
+.gallery-zoom-trigger img { transition: transform .55s var(--ease); }
+.gallery-zoom-trigger:hover img { transform: scale(1.025); }
+.gallery-zoom-label { position: absolute; right: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 7px; padding: 9px 12px; background: rgba(25,25,21,.78); color: #f7f5ef; font-size: 10px; opacity: .94; }
+.gallery-zoom-label svg, .size-guide-open svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.gallery-hint { margin: 8px 0 0; color: var(--muted); font-size: 9px; }
+.size-field { display: flex; align-items: end; flex-wrap: wrap; gap: 14px; }
+.size-field label { display: block; }
+.size-guide-open { display: inline-flex; align-items: center; gap: 5px; min-height: 40px; padding: 0 0 2px; border: 0; border-bottom: 1px dashed rgba(162,125,62,.6); background: none; color: #80663b; font: inherit; font-size: 10px; cursor: pointer; }
+.size-guide-dialog, .product-lightbox-dialog { position: fixed; inset: 50% auto auto 50%; transform: translate(-50%,-50%); margin: 0; border: 1px solid rgba(200,166,106,.38); border-radius: 2px; box-shadow: 0 22px 80px rgba(0,0,0,.28); }
+.size-guide-dialog { width: min(92vw,560px); max-height: min(88vh,760px); padding: clamp(20px,4vw,34px); overflow-y: auto; background: var(--white); color: var(--ink); }
+.size-guide-dialog::backdrop, .product-lightbox-dialog::backdrop { background: rgba(14,14,12,.76); backdrop-filter: blur(3px); }
+.guide-dialog-head { display: flex; align-items: start; justify-content: space-between; gap: 18px; }
+.guide-dialog-head h2 { margin: 5px 0 0; font-size: clamp(20px,4vw,27px); font-weight: 400; }
+.dialog-close, .lightbox-close { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid var(--line); background: transparent; color: inherit; cursor: pointer; }
+.dialog-close svg, .lightbox-close svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+.size-guide-copy, .size-guide-note { color: #6f6b60; font-size: 11px; line-height: 2; }
+.size-guide-copy { margin: 18px 0 12px; }
+.size-guide-note { margin: 14px 0 0; padding-top: 11px; border-top: 1px solid var(--line); font-size: 10px; }
+.size-guide-table-wrap { overflow-x: auto; }
+.size-guide-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.size-guide-table th, .size-guide-table td { padding: 11px 12px; border-bottom: 1px solid var(--line); text-align: right; }
+.size-guide-table th { color: #8a744d; font-size: 10px; font-weight: 500; }
+.size-guide-table td:first-child { font-family: 'DM Sans','Vazirmatn',sans-serif; font-size: 12px; }
+.gift-options { margin: 17px 0 4px; padding: 12px 14px; border: 1px solid var(--line); }
+.gift-toggle { display: flex; align-items: center; gap: 11px; cursor: pointer; }
+.gift-toggle input { width: 17px; height: 17px; margin: 0; accent-color: #a27d3e; }
+.gift-toggle-copy { display: grid; gap: 3px; flex: 1; }
+.gift-toggle-copy strong { font-size: 11px; font-weight: 500; }
+.gift-toggle-copy small { color: var(--muted); font-size: 9px; }
+.gift-check { color: #a27d3e; font-size: 14px; opacity: .55; }
+.gift-toggle input:checked ~ .gift-check { opacity: 1; }
+.gift-note-field { display: block; margin-top: 14px; }
+.gift-note-field[hidden] { display: none; }
+.gift-note-field .field-label { display: flex; justify-content: space-between; gap: 8px; }
+.gift-note-field .field-label small { color: var(--muted); font-size: 9px; }
+.gift-note-field textarea { display: block; width: 100%; min-height: 68px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 0; background: #fffefa; color: var(--ink); font: inherit; font-size: 10px; line-height: 1.8; resize: vertical; }
+.gift-note-help { margin: 8px 0 0; color: var(--muted); font-size: 9px; }
+.cart-row-options { margin: 4px 0 0 !important; color: #80663b !important; font-size: 9px !important; line-height: 1.8; }
+.set-section-heading { align-items: end; margin-top: clamp(54px,8vw,92px); }
+.set-section-heading > div > p:last-child { margin: 7px 0 0; color: var(--muted); font-size: 10px; line-height: 1.8; }
+.product-lightbox-dialog { width: min(96vw,1120px); max-width: 1120px; max-height: 94vh; padding: 54px 18px 12px; overflow: auto; background: #151512; color: #f8f6ef; }
+.product-lightbox-dialog[open] { display: block; }
+.lightbox-close { position: absolute; top: 12px; right: 12px; z-index: 2; border-color: rgba(255,255,255,.25); }
+.lightbox-stage { display: grid; grid-template-columns: 48px minmax(0,1fr) 48px; align-items: center; gap: 12px; }
+.lightbox-image { display: block; width: 100%; max-height: 77vh; object-fit: contain; background: #191915; }
+.lightbox-nav { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 1px solid rgba(255,255,255,.25); background: transparent; color: inherit; cursor: pointer; }
+.lightbox-nav svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.lightbox-count { margin: 10px 0 0; color: #c9c3b4; font-size: 10px; text-align: center; }
+.set-section-heading h2 { margin: 0; font-size: clamp(19px,2.7vw,26px); font-weight: 400; }
+@media (max-width: 640px) {
+  .size-field { width: 100%; justify-content: space-between; }
+  .size-guide-dialog { width: calc(100vw - 28px); padding: 21px 18px; }
+  .product-lightbox-dialog { width: 100vw; max-width: none; max-height: 100dvh; height: 100dvh; border: 0; padding: 58px 8px 12px; }
+  .lightbox-stage { grid-template-columns: 34px minmax(0,1fr) 34px; gap: 3px; }
+  .lightbox-nav { width: 32px; height: 38px; }
+  .lightbox-image { max-height: 78dvh; }
+  .gallery-zoom-label { right: 10px; bottom: 10px; }
+  .set-section-heading { align-items: start; gap: 16px; }
+  .set-section-heading .view-all { align-self: end; white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-zoom-trigger img { transition: none; }
+}
